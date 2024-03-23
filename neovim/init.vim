@@ -10,7 +10,7 @@ set noundofile
 
 inoremap jk <ESC>
 
-inoremap <TAB> <C-P>
+"inoremap <TAB> <C-P>
 inoremap <S-TAB> <TAB>
 
 inoremap <C-V> <ESC>"+pa
@@ -99,11 +99,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 "Plug 'SmiteshP/nvim-navic'
 Plug 'elihunter173/dirbuf.nvim'
 Plug 'tpope/vim-surround'
-Plug 'machakann/vim-swap'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+"Plug 'machakann/vim-swap'
 "Plug 'davidhalter/jedi-vim'
 Plug 'kana/vim-smartword'
 Plug 'Fildo7525/pretty_hover'
@@ -111,11 +112,17 @@ Plug 'Fildo7525/pretty_hover'
 Plug '3rd/image.nvim'
 Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'andymass/vim-matchup'
+"Plug 'PeterRincker/vim-argumentative'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
 " -- Start of textobj --
 Plug 'kana/vim-textobj-user'
 Plug 'fvictorio/vim-textobj-backticks'  " `
-"Plug 'D4KU/vim-textobj-chainmember'  " m
+Plug 'D4KU/vim-textobj-chainmember'  " m
 "Plug 'glts/vim-textobj-comment'  " c
 "Plug 'rhysd/vim-textobj-continuous-line'  " v
 "Plug 'kana/vim-textobj-function'  " f
@@ -123,11 +130,11 @@ Plug 'fvictorio/vim-textobj-backticks'  " `
 Plug 'pianohacker/vim-textobj-indented-paragraph'  " r, g(  and g) for jump
 "Plug 'vimtaku/vim-textobj-keyvalue'  " ak for key, iv for value
 Plug 'kana/vim-textobj-lastpat'  " /
-Plug 'sgur/vim-textobj-parameter'  " ,
+"Plug 'sgur/vim-textobj-parameter'  " ,
 "Plug 'lucapette/vim-textobj-underscore'  " _
 Plug 'jceb/vim-textobj-uri'  " iu for URL, go to open the URL
 Plug 'Julian/vim-textobj-variable-segment'  " v
-Plug 'bps/vim-textobj-python'  " python specific. af if for function, [pf, ]pf for jump function
+"Plug 'bps/vim-textobj-python'  " python specific. af if for function, [pf, ]pf for jump function
 Plug 'tkhren/vim-textobj-numeral'  " numbers.
 call plug#end()
 
@@ -330,7 +337,83 @@ require('nvim-treesitter.configs').setup {
       -- Instead of true it can also be a list of languages
 	  additional_vim_regex_highlighting = false,
     },
-  }
+
+	textobjects = {
+		-- Configs for select, swap, jump
+		select = {
+			enable = true,
+			lookahead = false,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				["i,"] = "@parameter.inner",
+				["a,"] = "@parameter.outer",
+				[","] = "@parameter.inner",
+			},
+			selection_modes = {
+				['@parameter.inner'] = 'v', -- charwise
+				['@function.outer'] = 'V', -- linewise
+				['@function.inner'] = 'V', -- linewise
+				['@class.outer'] = 'V', -- linewise
+				['@class.inner'] = 'V', -- linewise
+			},
+			include_surrounding_whitespace = false,
+		},
+
+		swap = {
+			enable = true,
+			swap_next = {
+				["g>"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["g<"] = "@parameter.inner",
+			},
+		},
+
+		move = {
+			enable = true,
+			set_jumps = true, -- whether to set jumps in the jumplist
+			goto_next_start = {
+				["]f"] = "@function.outer",
+				["]c"] = "@class.outer",
+				--
+				-- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
+				--["]o"] = "@loop.*",
+				-- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
+				--
+				-- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
+				-- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
+				["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+				--["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
+				[")"] = "@parameter.inner",
+			},
+			goto_next_end = {
+				["]F"] = "@function.outer",
+				["]C"] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[f"] = "@function.outer",
+				["[c"] = "@class.outer",
+				["("] = "@parameter.inner",
+			},
+			goto_previous_end = {
+				["[F"] = "@function.outer",
+				["[C"] = "@class.outer",
+			},
+			-- Below will go to either the start or the end, whichever is closer.
+			-- Use if you want more granular movements
+			-- Make it even more gradual by adding multiple queries and regex.
+			goto_next = {
+				--["]d"] = "@conditional.outer",
+			},
+			goto_previous = {
+				--["[d"] = "@conditional.outer",
+			},
+		},
+	},
+}
 
 --local navic = require('nvim-navic')
 
@@ -396,6 +479,166 @@ vim.keymap.set('n', 'K', function()
   vim.lsp.buf.hover()
 end)
 
+local cmp = require'cmp'
+
+-- local has_words_before = function()
+--   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+--   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+-- end
+
+-- following is from https://github.com/hrsh7th/nvim-cmp/discussions/1834
+local lspkind_comparator = function(conf)
+	local lsp_types = require("cmp.types").lsp
+	return function(entry1, entry2)
+		if entry1.source.name ~= "nvim_lsp" then
+			if entry2.source.name == "nvim_lsp" then
+				return false
+			else
+				return nil
+			end
+		end
+		local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+		local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+		if kind1 == "Variable" and entry1:get_completion_item().label:match("%w*=") then
+			kind1 = "Parameter"
+		end
+		if kind2 == "Variable" and entry2:get_completion_item().label:match("%w*=") then
+			kind2 = "Parameter"
+		end
+
+		local priority1 = conf.kind_priority[kind1] or 0
+		local priority2 = conf.kind_priority[kind2] or 0
+		if priority1 == priority2 then
+			return nil
+		end
+		return priority2 < priority1
+	end
+end
+
+local label_comparator = function(entry1, entry2)
+	return entry1.completion_item.label < entry2.completion_item.label
+end
+
+
+cmp.setup{
+  snippet = {
+	-- REQUIRED - you must specify a snippet engine
+	expand = function(args)
+	  vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+	end,
+  },
+  window = {
+	  -- completion = cmp.config.window.bordered(),
+	  -- documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-10),
+	['<C-f>'] = cmp.mapping.scroll_docs(10),
+	-- ['<C-Space>'] = cmp.mapping.complete(),
+	['<C-e>'] = cmp.mapping.abort(),
+	['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	["<Tab>"] = cmp.mapping(function()
+	  if cmp.visible() then
+		  cmp.select_next_item()
+		  --elseif vim.fn["vsnip#available"](1) == 1 then
+		  --feedkey("<Plug>(vsnip-expand-or-jump)", "")
+	  --elseif has_words_before() then
+		  --cmp.complete()
+	  else
+		  cmp.complete() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+	  end
+	end, { "i", "s" }),
+	["<S-Tab>"] = cmp.mapping(function(fallback)
+		if cmp.visible() then
+			cmp.select_prev_item()
+		else
+			fallback()
+		--elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+			--feedkey("<Plug>(vsnip-jump-prev)", "")
+		end
+	end, { "i", "s" }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp', max_item_count = 10 },
+    -- { name = 'vsnip' }, -- For vsnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+	  { name = 'buffer', max_item_count = 10},
+  }),
+  sorting = {
+	  -- From github
+	  comparators = {
+		  lspkind_comparator({
+		      kind_priority = {
+				  Parameter = 14,
+				  Variable = 12,
+				  Field = 11,
+				  Property = 11,
+				  Constant = 5,
+				  Enum = 10,
+				  EnumMember = 10,
+				  Event = 10,
+				  Function = 10,
+				  Method = 10,
+				  Operator = 5,
+				  Reference = 5,
+				  Struct = 10,
+				  File = 8,
+				  Folder = 8,
+				  Class = 5,
+				  Color = 5,
+				  Module = 5,
+				  Keyword = 1,
+				  Constructor = 1,
+				  Interface = 1,
+				  Snippet = 14,
+				  Text = 1,
+				  TypeParameter = 1,
+				  Unit = 1,
+				  Value = 1,
+			  },
+		  }),
+		  -- label_comparator,
+	  }
+  }
+}
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+	sources = cmp.config.sources({
+	{ name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+	}, {
+		{ name = 'buffer' },
+	})
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = 'buffer' }
+	}
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+	{ name = 'path' }
+	}, {
+		{ name = 'cmdline' }
+		}),
+		matching = { disallow_symbol_nonprefix_matching = false }
+})
+
+-- Set up lspconfig.
+--local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+lspconfig.pyright.setup {
+	capabilities = require('cmp_nvim_lsp').default_capabilities()
+}
 
 -- jupyter
 vim.keymap.set("n", "mi", ":MoltenInit<CR>",
