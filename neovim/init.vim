@@ -80,11 +80,88 @@ au FileType cpp nnoremap <F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
 au FileType cpp nnoremap <F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
 au FileType cpp nnoremap <F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=address,leak,undefined<CR>
 au FileType cpp nnoremap <F10> :w<CR>:term ./%<<CR>
-au FileType cpp nnoremap <F5> :term cf test %<CR>
-au FileType cpp nnoremap <F6> :term cf submit -f %<CR>
+au FileType cpp nnoremap <F4> :term cf test %<CR>
+au FileType cpp nnoremap <F5> :term cf submit -f %<CR>
+au FileType cpp tnoremap <F4> <CR>:term cf test %<CR>
+au FileType cpp tnoremap <F5> <CR>:term cf submit -f %<CR>
 au FileType tex nnoremap <F9> :w<CR>:term xelatex %<CR>
 au FileType sh nnoremap <F9> :w<CR>:term bash %<CR>
 
+
+function WriteFor(str)
+	let a=""
+	let b=""
+	let c=""
+	if strlen(a:str)==3
+		let a=a:str[0]
+		let b=a:str[1]
+		let c=a:str[2]
+	else
+		" a=b; a<=c; a++
+		let w=1
+		let s1=0
+		let s2=0
+		for i in range(0,strlen(a:str)-1)
+			if a:str[i]==',' && s1==0 && s2==0
+				let w=w+1
+			else
+				if w==1
+					let a = a . a:str[i]
+					" echo a:str[i] . ' ' . a
+				elseif w==2
+					let b = b . a:str[i]
+				else
+					let c = c . a:str[i]
+				endif
+				if a:str[i]=='('
+					let s1=s1+1
+				elseif a:str[i]==')'
+					let s1=s1-1
+				elseif a:str[i]=='['
+					let s2=s2+1
+				elseif a:str[i]==']'
+					let s2=s2-1
+				endif
+			endif
+		endfor
+	endif
+	if b=="-"
+		let outputstr = "for(int " . a . "=" . "0; ". a . "<"
+	else
+		let outputstr = "for(int " . a . "=" . b . "; " . a  . "<"
+	endif
+	if b!="0"
+		let outputstr = outputstr . "="
+	endif
+	let outputstr = outputstr . c . "; " . a . "++)"
+	execute "normal! cc" . outputstr
+endfunction
+
+function WriteEdge(str)
+	"iu
+	let outputstr = "for(int " . a:str[0] . "=h[" . a:str[1] . "]; " . a:str[0] . "; " . a:str[0] . "=nx[" . a:str[0] . "])"
+	execute "normal! cc" . outputstr
+endfunction
+
+function WriteScanf(str)
+	"n,m
+	let s1 = "scanf(\"%d"
+	let s2 = " &"
+	for i in range(0, strlen(a:str)-1)
+		let s2 = s2 . a:str[i]
+		if a:str[i]==','
+			let s1 = s1 . "%d"
+			let s2 = s2 . " &"
+		endif
+	endfor
+	let ans = s1 . "\"," . s2 . ");"
+	execute "normal! cc" . ans
+endfunction
+
+autocmd FileType cpp inoremap <C-F> <esc>:call WriteFor("")<left><left>
+autocmd FileType cpp inoremap <C-U> <esc>:call WriteEdge("")<left><left>
+autocmd FileType cpp inoremap <C-C> <esc>:call WriteScanf("")<left><left>
+autocmd FileType cpp nnoremap <F8> :r ~/cf/template/
 
 call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'nvim-neo-tree/neo-tree.nvim'
