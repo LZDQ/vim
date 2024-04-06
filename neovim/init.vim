@@ -45,7 +45,7 @@ nnoremap <RIGHT> zL
 nnoremap <C-RIGHT> 8zl
 nnoremap <TAB> <C-W><C-W>
 nnoremap <silent> <S-TAB> :bn<CR>
-nnoremap <silent> Q :q<CR>
+nnoremap Q :q<CR>
 nnoremap <C-Q> q
 nmap q <C-L>
 vnoremap q <ESC>
@@ -78,12 +78,14 @@ au FileType python nnoremap <F33> :w<CR>:term python -i %<CR>
 au FileType python nnoremap <F57> :w<CR>:term python -m pdb %<CR>
 au FileType cpp nnoremap <F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
 au FileType cpp nnoremap <F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
-au FileType cpp nnoremap <F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=address,leak,undefined<CR>
+au FileType cpp nnoremap <F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
 au FileType cpp nnoremap <F10> :w<CR>:term ./%<<CR>
 au FileType cpp nnoremap <F4> :term cf test %<CR>
 au FileType cpp nnoremap <F5> :term cf submit -f %<CR>
 au FileType cpp tnoremap <F4> <CR>:term cf test %<CR>
 au FileType cpp tnoremap <F5> <CR>:term cf submit -f %<CR>
+"au FileType cpp tnoremap <F9> <CR>:term g++ % -o %< -std=c++17<CR>
+"au FileType cpp tnoremap <F10> <CR>:term ./%<<CR>
 au FileType tex nnoremap <F9> :w<CR>:term xelatex %<CR>
 au FileType sh nnoremap <F9> :w<CR>:term bash %<CR>
 
@@ -516,6 +518,9 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {
+	autostart = true,
+}
+lspconfig.clangd.setup {
 	autostart = true,
 }
 
