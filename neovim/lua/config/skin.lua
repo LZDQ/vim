@@ -1,4 +1,4 @@
--- lualine, onedark/tokyo with custom configs
+-- lualine, onedark/tokyo, cmdline
 
 local function vim_link_hl(links)
 	for group_f, group_t in pairs(links) do
@@ -138,7 +138,5 @@ local lsp_links = {
 	["@lsp.typemod.variable.static"] = "@constant",
 }
 vim_link_hl(lsp_links)
-
-
 
 --local tokyo = require('tokyonight')

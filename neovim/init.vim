@@ -175,6 +175,8 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'elihunter173/dirbuf.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 "Plug 'SmiteshP/nvim-navic'
+Plug 'folke/noice.nvim'
+Plug 'rcarriga/nvim-notify'
 
 " lsp, highlight, completion
 Plug 'neovim/nvim-lspconfig'
@@ -187,23 +189,26 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'lukas-reineke/cmp-under-comparator'
-
-" Misc
-Plug 'vim-scripts/restore_view.vim'
-Plug 'cohama/lexima.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-surround'
-Plug 'kana/vim-smartword'
-Plug '3rd/image.nvim'
 Plug 'milisims/nvim-luaref'
 "Plug 'folke/lua-dev.nvim'
 Plug 'folke/neodev.nvim'
 Plug 'milisims/nvim-luaref'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
+
+" Misc
+Plug 'vim-scripts/restore_view.vim'
+Plug 'cohama/lexima.vim'
+Plug 'tpope/vim-surround'
+Plug 'kana/vim-smartword'
+Plug '3rd/image.nvim'
 "Plug 'andymass/vim-matchup'
+
+" Jump
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'ggandor/leap.nvim'
 
 " interactive python
 Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
@@ -233,7 +238,8 @@ let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
 " fzf current buffer
-nnoremap gf :Lines<CR>
+nnoremap gl :Lines<CR>
+nnoremap gf :Files<CR>
 
 " textobj for numbers.
 " in  is for all numbers except hex
