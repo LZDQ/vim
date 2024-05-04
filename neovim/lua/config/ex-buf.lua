@@ -51,7 +51,8 @@ noice.setup {
 			search_up = { kind = "search", pattern = "^%?", icon = "?", lang = "regex" },
 			filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
 			lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "Lua", lang = "lua" },
-			help = { pattern = "^:%s*he?l?p?%s+", icon = "Help" },
+			--help = { pattern = "^:%s*he?l?p?%s+", icon = "Help" },
+			help = false,
 			input = {}, -- Used by input()
 			-- lua = false, -- to disable a format, set to `false`
 		},
@@ -59,7 +60,7 @@ noice.setup {
 	messages = {
 		-- NOTE: If you enable messages, then the cmdline is enabled automatically.
 		-- This is a current Neovim limitation.
-		enabled = true,        -- enables the Noice messages UI
+		enabled = false,        -- enables the Noice messages UI
 		view = "notify",       -- default view for messages
 		view_error = "notify", -- view for errors
 		view_warn = "notify",  -- view for warnings
@@ -69,10 +70,10 @@ noice.setup {
 	popupmenu = {
 		enabled = true, -- enables the Noice popupmenu UI
 		---@type 'nui'|'cmp'
-		backend = "nui", -- backend to use to show regular cmdline completions
+		backend = "cmp", -- backend to use to show regular cmdline completions
 		---@type NoicePopupmenuItemKind|false
 		-- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
-		kind_icons = {}, -- set to `false` to disable icons
+		kind_icons = false, -- set to `false` to disable icons
 	},
 	-- default options for require('noice').redirect
 	-- see the section on Command Redirection
@@ -149,7 +150,7 @@ noice.setup {
 			-- override the lsp markdown formatter with Noice
 			["vim.lsp.util.stylize_markdown"] = false,
 			-- override cmp documentation with Noice (needs the other options to work)
-			["cmp.entry.get_documentation"] = false,
+			--["cmp.entry.get_documentation"] = false,
 		},
 		hover = {
 			enabled = true,
@@ -161,7 +162,7 @@ noice.setup {
 		signature = {
 			enabled = true,
 			auto_open = {
-				enabled = true,
+				enabled = false,
 				trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
 				luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
 				throttle = 50, -- Debounce lsp signature help request by 50ms

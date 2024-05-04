@@ -15,21 +15,21 @@ inoremap <S-TAB> <TAB>
 
 inoremap <C-V> <ESC>"+pa
 
+nnoremap <leader>z z
 nnoremap z %
 nnoremap dz d%
 nnoremap dv V%d
 nnoremap =z =%
-nnoremap yz V%y$%
-nnoremap <leader>z z
-set foldenable
-set foldmethod=manual
-
+nnoremap gz V%
 nnoremap Z za
 vnoremap z %
 vnoremap Z zf
 nnoremap + zR
 nnoremap - zM
 nnoremap <DEL> zD
+set foldenable
+set foldmethod=manual
+
 nnoremap <C-C> gg"+yG
 vnoremap <C-C> "+y
 nnoremap <space> $
@@ -44,7 +44,7 @@ nnoremap <DOWN> <C-E>
 nnoremap <LEFT> zH
 nnoremap <RIGHT> zL
 nnoremap <silent> <TAB> :bn<CR>
-nnoremap Q :q<CR>
+nnoremap <silent>Q :q<CR>
 nnoremap <C-Q> q
 nmap q <C-L>
 vnoremap q <ESC>
@@ -203,12 +203,14 @@ Plug 'tpope/vim-surround'
 Plug 'kana/vim-smartword'
 Plug '3rd/image.nvim'
 "Plug 'andymass/vim-matchup'
+Plug 'numToStr/Comment.nvim'
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ggandor/leap.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 
 " interactive python
 Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
@@ -237,9 +239,14 @@ call plug#end()
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
-" fzf current buffer
-nnoremap gl :Lines<CR>
-nnoremap gf :Files<CR>
+" fzf in CURRENT buffer
+nnoremap <silent>gl :Lines<CR>
+" fzf in files in this folder (use ctrlp instead)
+nnoremap <silent>gF :Files<CR>
+" fzf open buffer
+nnoremap <silent>gB :Buffers<CR>
+" fzf open ripgrep finder
+nnoremap <silent>gf :Rg<CR>
 
 " textobj for numbers.
 " in  is for all numbers except hex

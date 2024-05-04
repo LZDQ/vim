@@ -81,7 +81,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.lsp.buf.format()
 			vim.api.nvim_input('<ESC>')
 		end, opts)
-		vim.keymap.set('n', 'gF', vim.lsp.buf.format, opts)
+		vim.keymap.set('n', 'g=', vim.lsp.buf.format, opts)
 	end
 })
 return lspconfig
