@@ -87,6 +87,7 @@ au FileType cpp tnoremap <F5> <CR>:term cf submit -f %<CR>
 au FileType cpp tnoremap <F10> <CR>:term ./%<<CR>
 au FileType tex nnoremap <F9> :w<CR>:term xelatex %<CR>
 au FileType sh nnoremap <F9> :w<CR>:term bash %<CR>
+au FileType javascript nnoremap <F9> :w<CR>:term node %<CR>
 
 
 function WriteFor(str)
@@ -195,6 +196,7 @@ Plug 'folke/neodev.nvim'
 Plug 'milisims/nvim-luaref'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
+Plug 'zbirenbaum/copilot.lua'
 
 " Misc
 Plug 'vim-scripts/restore_view.vim'
@@ -267,15 +269,14 @@ nnoremap gnn <Plug>(textobj-numeral-n)
 nnoremap gpn <Plug>(textobj-numeral-p)
 
 
-"let g:jedi#show_call_signatures = 0
-"let g:jedi#popup_on_dot = 0
-"let g:jedi#popup_select_first = 0
-"let g:jedi#show_call_signatures_delay = 0
-
 
 set cursorline
 set cursorlineopt=number
 set termguicolors
+
+
+
+
 
 " Custom lua configs (packaged)
 lua require('config')

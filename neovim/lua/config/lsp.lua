@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 
+-- npm install -g pyright
 lspconfig.pyright.setup {
 	autostart = true,
 	settings = {
@@ -12,6 +13,13 @@ lspconfig.pyright.setup {
 		}
 	},
 }
+-- pip install python-lsp-server
+lspconfig.pylsp.setup{}
+-- pip install pylyzer
+lspconfig.pylyzer.setup{}
+
+
+
 lspconfig.clangd.setup {
 	autostart = true,
 }
@@ -41,6 +49,44 @@ lspconfig.lua_ls.setup {
 	},
 }
 
+-- npm install -g --save-dev --save-exact @biomejs/biome
+lspconfig.biome.setup{}
+
+-- npm i -g vscode-langservers-extracted
+lspconfig.html.setup{}
+lspconfig.cssls.setup{}
+lspconfig.jsonls.setup{}
+lspconfig.eslint.setup{}
+
+-- npm i -g @olrtg/emmet-language-server
+lspconfig.emmet_language_server.setup{}
+
+-- npm install -g dockerfile-language-server-nodejs
+lspconfig.dockerls.setup{}
+
+-- npm install -g @microsoft/compose-language-service
+lspconfig.docker_compose_language_service.setup{}
+
+-- npm install -g --save-dev @babel/core @babel/cli @babel/preset-flow babel-plugin-syntax-hermes-parser
+lspconfig.flow.setup{}
+
+lspconfig.marksman.setup{}
+
+-- cargo install neocmakelsp
+lspconfig.neocmake.setup{}
+
+-- npm install -g vim-language-server
+lspconfig.vimls.setup{}
+
+-- npm i -g sql-language-server
+lspconfig.sqlls.setup{}
+
+-- npm install -g vls
+lspconfig.vls.setup{}
+
+
+
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -67,7 +113,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		--vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
 		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 		-- Format current line
-		vim.keymap.set('n', '==', function()
+		vim.keymap.set('n', '=;', function()
 			local line = vim.api.nvim_win_get_cursor(0)[1]
 			vim.lsp.buf.format({
 				range = {
@@ -77,7 +123,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			})
 		end, opts)
 		-- Format visual selection
-		vim.keymap.set('v', '=', function()
+		vim.keymap.set('v', 'g=', function()
 			vim.lsp.buf.format()
 			vim.api.nvim_input('<ESC>')
 		end, opts)

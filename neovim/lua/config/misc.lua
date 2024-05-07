@@ -20,7 +20,7 @@ require('Comment').setup {
 	---LHS of operator-pending mappings in NORMAL and VISUAL mode
 	opleader = {
 		---Line-comment keymap
-		line = 'gc',
+		line = ',',
 		---Block-comment keymap
 		block = 'gb',
 	},
@@ -47,5 +47,5 @@ require('Comment').setup {
 	post_hook = nil,
 }
 
--- vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+vim.cmd([[autocmd FileType * set formatoptions-=o]])
 

@@ -2,7 +2,6 @@
 -- bufferline (at the top of screen)
 -- neo-tree (not configured)
 -- dirbuf
--- navic (not configured)
 
 local bufferline = require('bufferline')
 bufferline.setup{
@@ -30,8 +29,6 @@ require('dirbuf').setup {
 	sort_order = "default",
 	write_cmd = "DirbufSync",
 }
-
--- local navic = require('nvim-navic')
 
 local noice = require('noice')
 noice.setup {
@@ -232,4 +229,27 @@ noice.setup {
 	status = {}, --- @see section on statusline components
 	---@type NoiceFormatOptions
 	format = {}, --- @see section on formatting
+}
+
+local notify = require 'notify'
+notify.setup {
+	background_colour = "NotifyBackground",
+	fps = 30,
+	icons = {
+		DEBUG = "DEBUG",
+		ERROR = "ERROR",
+		INFO = "INFO",
+		TRACE = "TRACE",
+		WARN = "WARN"
+	},
+	level = 2,
+	minimum_width = 50,
+	render = "default",
+	stages = "fade_in_slide_out",
+	time_formats = {
+		notification = "%T",
+		notification_history = "%FT%T"
+	},
+	timeout = 5000,
+	top_down = true
 }

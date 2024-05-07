@@ -132,3 +132,66 @@ cmp.setup.cmdline(':', {
 	}),
 	matching = { disallow_symbol_nonprefix_matching = false }
 })
+
+local copilot = require 'copilot'
+copilot.setup {
+	panel = {
+		enabled = false,
+		auto_refresh = false,
+		keymap = {
+			jump_prev = "[[",
+			jump_next = "]]",
+			accept = "<CR>",
+			refresh = "gr",
+			open = "<M-CR>"
+		},
+		layout = {
+			position = "bottom", -- | top | left | right
+			ratio = 0.4
+		},
+	},
+	suggestion = {
+		enabled = true,
+		auto_trigger = false,
+		debounce = 75,
+		keymap = {
+			-- accept = "<C-CR>",
+			accept = false,
+			accept_word = false,
+			accept_line = false,
+			next = "<C-]>",
+			prev = "<C-[>",
+			dismiss = "<C-\\>",
+		},
+	},
+	filetypes = {
+		yaml = false,
+		markdown = false,
+		help = false,
+		gitcommit = false,
+		gitrebase = false,
+		hgcommit = false,
+		svn = false,
+		cvs = false,
+		["."] = false,
+	},
+	copilot_node_command = 'node', -- Node.js version must be > 18.x
+	server_opts_overrides = {},
+}
+
+local sug = require 'copilot.suggestion'
+vim.keymap.set('i', '<C-CR>', function() 
+	if sug.visible then
+		sug.accept()
+	else
+		sug.next()
+	end
+end)
+vim.keymap.set('n', '<C-T>', function()
+	sug.toggle_auto_trigger()
+	if vim.b.copilot_suggestion_auto_trigger then
+		vim.notify("Enalbed Copilot auto suggestion")
+	else
+		vim.notify("Disabled Copilot auto suggestion")
+	end
+end)
