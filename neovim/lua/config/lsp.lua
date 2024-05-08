@@ -14,9 +14,9 @@ lspconfig.pyright.setup {
 	},
 }
 -- pip install python-lsp-server
-lspconfig.pylsp.setup{}
+-- lspconfig.pylsp.setup{}
 -- pip install pylyzer
-lspconfig.pylyzer.setup{}
+-- lspconfig.pylyzer.setup{}
 
 
 
@@ -50,7 +50,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- npm install -g --save-dev --save-exact @biomejs/biome
-lspconfig.biome.setup{}
+-- lspconfig.biome.setup{}
 
 -- npm i -g vscode-langservers-extracted
 lspconfig.html.setup{}
@@ -68,12 +68,12 @@ lspconfig.dockerls.setup{}
 lspconfig.docker_compose_language_service.setup{}
 
 -- npm install -g --save-dev @babel/core @babel/cli @babel/preset-flow babel-plugin-syntax-hermes-parser
-lspconfig.flow.setup{}
+-- lspconfig.flow.setup{}
 
 lspconfig.marksman.setup{}
 
 -- cargo install neocmakelsp
-lspconfig.neocmake.setup{}
+-- lspconfig.neocmake.setup{}
 
 -- npm install -g vim-language-server
 lspconfig.vimls.setup{}

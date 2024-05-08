@@ -200,12 +200,14 @@ Plug 'zbirenbaum/copilot.lua'
 
 " Misc
 Plug 'vim-scripts/restore_view.vim'
-Plug 'cohama/lexima.vim'
+Plug 'windwp/nvim-autopairs'
 Plug 'tpope/vim-surround'
 Plug 'kana/vim-smartword'
 Plug '3rd/image.nvim'
 "Plug 'andymass/vim-matchup'
 Plug 'numToStr/Comment.nvim'
+Plug 'nvim-focus/focus.nvim'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'
