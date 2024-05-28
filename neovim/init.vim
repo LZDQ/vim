@@ -27,6 +27,7 @@ vnoremap Z zf
 nnoremap + zR
 nnoremap - zM
 nnoremap <DEL> zD
+nmap t vafZ
 set foldenable
 set foldmethod=manual
 
@@ -78,13 +79,15 @@ au FileType python nnoremap <F57> :w<CR>:term python -m pdb %<CR>
 au FileType cpp nnoremap <F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
 au FileType cpp nnoremap <F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
 au FileType cpp nnoremap <F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
-au FileType cpp nnoremap <F10> :w<CR>:term ./%<<CR>
+au FileType cpp nnoremap <F10> :term ./%<<CR>
 au FileType cpp nnoremap <F4> :term cf test %<CR>
 au FileType cpp nnoremap <F5> :term cf submit -f %<CR>
 au FileType cpp tnoremap <F4> <CR>:term cf test %<CR>
 au FileType cpp tnoremap <F5> <CR>:term cf submit -f %<CR>
 "au FileType cpp tnoremap <F9> <CR>:term g++ % -o %< -std=c++17<CR>
 au FileType cpp tnoremap <F10> <CR>:term ./%<<CR>
+au FileType c nnoremap <F9> :w<CR>:term gcc % -o %<<CR>
+au FileType c nnoremap <F10> :term ./%<<CR>
 au FileType tex nnoremap <F9> :w<CR>:term xelatex %<CR>
 au FileType sh nnoremap <F9> :w<CR>:term bash %<CR>
 au FileType javascript nnoremap <F9> :w<CR>:term node %<CR>
@@ -244,13 +247,13 @@ let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
 " fzf in CURRENT buffer
-nnoremap <silent>gl :Lines<CR>
+" nnoremap <silent><leader>l :Lines<CR>
 " fzf in files in this folder (use ctrlp instead)
-nnoremap <silent>gF :Files<CR>
+" nnoremap <silent>gF :Files<CR>
 " fzf open buffer
-nnoremap <silent>gB :Buffers<CR>
+" nnoremap <silent>gB :Buffers<CR>
 " fzf open ripgrep finder
-nnoremap <silent>gf :Rg<CR>
+" nnoremap <silent><leader>r :Rg<CR>
 
 " textobj for numbers.
 " in  is for all numbers except hex
@@ -267,8 +270,8 @@ vnoremap ix <Plug>(textobj-numeral-hex-i)
 onoremap ix <Plug>(textobj-numeral-hex-i)
 vnoremap ax <Plug>(textobj-numeral-hex-a)
 onoremap ax <Plug>(textobj-numeral-hex-a)
-nnoremap gnn <Plug>(textobj-numeral-n)
-nnoremap gpn <Plug>(textobj-numeral-p)
+" nnoremap gnn <Plug>(textobj-numeral-n)
+" nnoremap gpn <Plug>(textobj-numeral-p)
 
 
 

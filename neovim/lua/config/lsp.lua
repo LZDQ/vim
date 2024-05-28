@@ -8,7 +8,8 @@ lspconfig.pyright.setup {
 			analysis = {
 				autoSearchPaths = true,
 				diagnosticMode = 'workspace',
-				useLibraryCodeForTypes = true
+				useLibraryCodeForTypes = true,
+				typeCheckingMode = 'off',
 			}
 		}
 	},
@@ -84,7 +85,8 @@ lspconfig.sqlls.setup{}
 -- npm install -g vls
 lspconfig.vls.setup{}
 
-
+-- dotnet tool install --global csharp-ls
+lspconfig.csharp_ls.setup{}
 
 
 -- Use LspAttach autocommand to only map the following keys
