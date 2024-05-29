@@ -136,22 +136,23 @@ cmp.setup.cmdline(':', {
 local copilot = require 'copilot'
 copilot.setup {
 	panel = {
-		enabled = false,
-		auto_refresh = false,
+		enabled = true,
+		auto_refresh = true,
 		keymap = {
-			jump_prev = "[[",
-			jump_next = "]]",
+			-- These keymappings don't work for now
+			jump_prev = "[",
+			jump_next = "]",
 			accept = "<CR>",
-			refresh = "gr",
-			open = "<M-CR>"
+			refresh = "<F5>",
+			open = "<leader>p"
 		},
 		layout = {
-			position = "bottom", -- | top | left | right
+			position = "right", -- | top | left | right
 			ratio = 0.4
 		},
 	},
 	suggestion = {
-		enabled = true,
+		enabled = false,
 		auto_trigger = false,
 		debounce = 75,
 		keymap = {
@@ -173,13 +174,12 @@ copilot.setup {
 		hgcommit = false,
 		svn = false,
 		cvs = false,
-		["."] = false,
 	},
 	copilot_node_command = 'node', -- Node.js version must be > 18.x
 	server_opts_overrides = {},
 }
 
-local sug = require 'copilot.suggestion'
+--[[ local sug = require 'copilot.suggestion'
 vim.keymap.set('i', '<C-CR>', function() 
 	if sug.visible then
 		sug.accept()
@@ -194,4 +194,13 @@ vim.keymap.set('n', '<C-T>', function()
 	else
 		vim.notify("Disabled Copilot auto suggestion")
 	end
+end) ]]
+
+local panel = require 'copilot.panel'
+vim.keymap.set('n', '<leader>p', function()
+	panel.open({
+		position = "right",
+		ratio = 0.4,
+	})
 end)
+
