@@ -7,9 +7,5 @@ require('config.cmp')
 require('config.lsp')
 require('config.molten')
 require('config.misc')
-
-
-
-
-
+require('config.typefocus')
 

@@ -22,16 +22,16 @@ require('Comment').setup {
 		---Line-comment keymap
 		line = ',',
 		---Block-comment keymap
-		block = 'gb',
+		block = '<leader>,',
 	},
 	---LHS of extra mappings
 	extra = {
 		---Add comment on the line above
-		above = 'cO',
+		-- above = '<leader>O',
 		---Add comment on the line below
-		below = 'co',
+		-- below = '<leader>o',
 		---Add comment at the end of line
-		eol = 'c;',
+		eol = '<leader>,',
 	},
 	---Enable keybindings
 	---NOTE: If given `false` then the plugin won't create any mappings
@@ -48,6 +48,7 @@ require('Comment').setup {
 }
 
 vim.cmd([[autocmd FileType * set formatoptions-=o]])
+
 
 require('nvim-autopairs').setup {
     disable_filetype = { "TelescopePrompt", "spectre_panel" },
@@ -68,4 +69,3 @@ require('nvim-autopairs').setup {
     map_c_w = false, -- map <c-w> to delete a pair if possible
 }
 
-require("focus").setup()

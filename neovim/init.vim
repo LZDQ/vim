@@ -27,7 +27,7 @@ vnoremap Z zf
 nnoremap + zR
 nnoremap - zM
 nnoremap <DEL> zD
-nmap t vafZ
+" nmap t vafZ
 set foldenable
 set foldmethod=manual
 
@@ -181,6 +181,7 @@ Plug 'nvim-neo-tree/neo-tree.nvim'
 "Plug 'SmiteshP/nvim-navic'
 Plug 'folke/noice.nvim'
 Plug 'rcarriga/nvim-notify'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " lsp, highlight, completion
 Plug 'neovim/nvim-lspconfig'
@@ -200,6 +201,10 @@ Plug 'milisims/nvim-luaref'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'zbirenbaum/copilot.lua'
+
+" Typefocus
+Plug 'folke/zen-mode.nvim'
+Plug 'folke/twilight.nvim'
 
 " Misc
 Plug 'vim-scripts/restore_view.vim'
@@ -243,17 +248,10 @@ Plug 'tkhren/vim-textobj-numeral'  " numbers.
 call plug#end()
 
 
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_map = '<C-P>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 
-" fzf in CURRENT buffer
-" nnoremap <silent><leader>l :Lines<CR>
-" fzf in files in this folder (use ctrlp instead)
-" nnoremap <silent>gF :Files<CR>
-" fzf open buffer
-" nnoremap <silent>gB :Buffers<CR>
-" fzf open ripgrep finder
-" nnoremap <silent><leader>r :Rg<CR>
 
 " textobj for numbers.
 " in  is for all numbers except hex

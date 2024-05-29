@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		--vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
 		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 		-- Format current line
-		vim.keymap.set('n', '=;', function()
+		vim.keymap.set('n', '<leader>=', function()
 			local line = vim.api.nvim_win_get_cursor(0)[1]
 			vim.lsp.buf.format({
 				range = {
@@ -125,7 +125,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			})
 		end, opts)
 		-- Format visual selection
-		vim.keymap.set('v', 'g=', function()
+		vim.keymap.set('v', '<leader>=', function()
 			vim.lsp.buf.format()
 			vim.api.nvim_input('<ESC>')
 		end, opts)

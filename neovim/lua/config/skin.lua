@@ -139,4 +139,8 @@ local lsp_links = {
 }
 vim_link_hl(lsp_links)
 
---local tokyo = require('tokyonight')
+-- local tokyo = require('tokyonight')
+
+require("ibl").setup {
+	-- Not configured yet
+}
