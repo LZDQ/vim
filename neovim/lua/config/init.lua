@@ -1,3 +1,5 @@
+-- vim.opt.runtimepath:append("/home/ldq/umbra.nvim")
+
 require('config.skin')
 require('config.buf')
 require('config.jump')

@@ -173,8 +173,9 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 "Skin, Buffer
 Plug 'nvim-lualine/lualine.nvim'
 "Plug 'nvim-tree/nvim-web-devicons'
-Plug 'navarasu/onedark.nvim'
+" Plug 'navarasu/onedark.nvim'
 Plug 'folke/tokyonight.nvim'
+Plug 'LZDQ/umbra.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'elihunter173/dirbuf.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
@@ -182,6 +183,7 @@ Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'folke/noice.nvim'
 Plug 'rcarriga/nvim-notify'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'zaldih/themery.nvim'
 
 " lsp, highlight, completion
 Plug 'neovim/nvim-lspconfig'

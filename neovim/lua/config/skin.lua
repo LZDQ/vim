@@ -1,11 +1,5 @@
 -- lualine, onedark/tokyo, cmdline
 
-local function vim_link_hl(links)
-	for group_f, group_t in pairs(links) do
-		vim.api.nvim_set_hl(0, group_f, { link = group_t })
-	end
-end
-
 require('lualine').setup {
 	options = {
 		icons_enabled = false,
@@ -47,19 +41,19 @@ require('lualine').setup {
 	extensions = {}
 }
 
-local onedark = require('onedark')
+local umbra = require('umbra')
 
-onedark.setup {
+umbra.setup {
 	-- Main options --
-	style = 'darker',             -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+	style = 'rose',             -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 	transparent = false,          -- Show/hide background
 	term_colors = true,           -- Change terminal color as per the selected theme style
 	ending_tildes = false,        -- Show the end-of-buffer tildes. By default they are hidden
 	cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
 
 	-- toggle theme style ---
-	toggle_style_key = '<leader>d',                                                    -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-	toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
+	toggle_style_key = '!',                                                    -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+	toggle_style_list = { 'lumen',  'rose', 'deep', 'warm',  'light' }, -- List of styles to toggle between
 
 	-- Change code style ---
 	-- Options are italic, bold, underline, none
@@ -81,24 +75,6 @@ onedark.setup {
 	colors = {}, -- Override default colors
 	highlights = {
 		-- For all options, see
-		-- https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/highlights.lua#L133-L257
-		["@keyword.import"] = { fg = '$blue' },
-		["@keyword.repeat"] = { fg = '$blue' },
-		["@constructor"] = { fg = '$orange', fmt = 'none' },
-		["@constant.builtin"] = { fg = '$blue' },
-		["@boolean"] = { fg = '$blue' },
-		["@type.builtin"] = { fg = '#3EB489' }, -- mint
-		["@variable"] = { fg = '$fg' },
-		["@variable.python"] = { fg = '$fg' },
-		["@variable.parameter"] = { fg = '$cyan' },
-		["@variable.member"] = { fg = '$fg' },
-		["@variable.builtin"] = { fg = '#FF69Bf' }, -- pink
-		["@punctuation.bracket"] = { fg = '$fg' },
-		["@punctuation.delimiter"] = { fg = '$fg' },
-		["@comment"] = { fg = '#41C9E2' }, -- something blue
-		["@string"] = { fg = '#96E9C6' }, -- something green
-		["@string.escape"] = { fg = '#7F00FF' }, -- something violet
-		["@keyword"] = { fg = '$purple' },
 	},                                   -- Override highlight groups
 
 	-- Plugins Config --
@@ -109,38 +85,30 @@ onedark.setup {
 	},
 }
 
-onedark.load()
-vim.api.nvim_set_hl(0, 'Visual', { bg = 'Grey' })
-
--- Modification for lsp
-local lsp_links = {
-	["@lsp.type.comment"] = "@comment",
-	["@lsp.type.enum"] = "@type",
-	["@lsp.type.enumMember"] = "@constant.builtin",
-	["@lsp.type.interface"] = "@type",
-	["@lsp.type.typeParameter"] = "@type",
-	["@lsp.type.keyword"] = "@keyword",
-	["@lsp.type.namespace"] = "@module",
-	["@lsp.type.parameter"] = "@variable.parameter",
-	["@lsp.type.property"] = "@property",
-	["@lsp.type.variable"] = "@variable",
-	["@lsp.type.macro"] = "@function.macro",
-	["@lsp.type.method"] = "@function.method",
-	["@lsp.type.number"] = "@number",
-	["@lsp.type.generic"] = "@text",
-	["@lsp.type.builtinType"] = "@type.builtin",
-	["@lsp.typemod.method.defaultLibrary"] = "@function",
-	["@lsp.typemod.function.defaultLibrary"] = "@function",
-	["@lsp.typemod.operator.injected"] = "@operator",
-	["@lsp.typemod.string.injected"] = "@string",
-	["@lsp.typemod.variable.defaultLibrary"] = "@variable.builtin",
-	["@lsp.typemod.variable.injected"] = "@variable",
-	["@lsp.typemod.variable.static"] = "@constant",
-}
-vim_link_hl(lsp_links)
+umbra.load()
 
 -- local tokyo = require('tokyonight')
 
 require("ibl").setup {
-	-- Not configured yet
+	scope = {
+		enabled = true,
+		show_start = false,
+		show_end = false,
+		exclude = {
+			language = { "python" }
+		}
+	},
+	-- whitespace = { highlight = { "Normal", "Whitespace",  } },
+	-- indent = { highlight = { "Normal" } },
+}
+
+-- Minimal config
+require("themery").setup {
+	themes = {
+		"tokyonight-storm",
+		"tokyonight-moon",
+		-- "onedark",
+	},      -- Your list of installed colorschemes
+	-- themeConfigFile = "~/.config/nvim/lua/settings/theme.lua", -- Described below
+	livePreview = true, -- Apply theme while browsing. Default to true.
 }

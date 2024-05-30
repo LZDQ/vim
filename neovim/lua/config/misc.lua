@@ -27,11 +27,11 @@ require('Comment').setup {
 	---LHS of extra mappings
 	extra = {
 		---Add comment on the line above
-		-- above = '<leader>O',
+		above = 'cO',
 		---Add comment on the line below
-		-- below = '<leader>o',
+		below = 'co',
 		---Add comment at the end of line
-		eol = '<leader>,',
+		eol = 'c,',
 	},
 	---Enable keybindings
 	---NOTE: If given `false` then the plugin won't create any mappings
