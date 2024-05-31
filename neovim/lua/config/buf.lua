@@ -16,12 +16,13 @@ bufferline.setup{
 	}
 }
 
+--[[
 require('neo-tree').setup{
 	source_selector = {
 		winbar = true,
 		statusline = true
 	},
-}
+}]]
 
 require('dirbuf').setup {
 	hash_padding = 2,
@@ -29,6 +30,14 @@ require('dirbuf').setup {
 	sort_order = "default",
 	write_cmd = "DirbufSync",
 }
+vim.keymap.set('n', ';d', function()
+-- If filetype is already 'dirbuf', close it. Otherwise open it
+	if vim.bo.filetype == 'dirbuf' then
+		vim.cmd('DirbufQuit')
+	else
+		vim.cmd('Dirbuf')
+	end
+end)
 
 local noice = require('noice')
 noice.setup {

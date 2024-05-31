@@ -17,17 +17,16 @@ inoremap <C-V> <ESC>"+pa
 
 nnoremap <leader>z z
 nnoremap z %
-nnoremap dz d%
-nnoremap dv V%d
-nnoremap =z =%
-nnoremap gz V%
+onoremap z %
+" nnoremap dz d%
+" nnoremap =z =%
+" nnoremap gz V%
 nnoremap Z za
 vnoremap z %
 vnoremap Z zf
 nnoremap + zR
 nnoremap - zM
 nnoremap <DEL> zD
-" nmap t vafZ
 set foldenable
 set foldmethod=manual
 
@@ -46,7 +45,7 @@ nnoremap <LEFT> zH
 nnoremap <RIGHT> zL
 nnoremap <silent> <TAB> :bn<CR>
 nnoremap <silent>Q :q<CR>
-nnoremap <C-Q> q
+nnoremap <leader>q q
 nmap q <C-L>
 vnoremap q <ESC>
 
@@ -178,12 +177,13 @@ Plug 'folke/tokyonight.nvim'
 Plug 'LZDQ/umbra.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'elihunter173/dirbuf.nvim'
-Plug 'nvim-neo-tree/neo-tree.nvim'
+" Plug 'nvim-neo-tree/neo-tree.nvim'
 "Plug 'SmiteshP/nvim-navic'
 Plug 'folke/noice.nvim'
 Plug 'rcarriga/nvim-notify'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'zaldih/themery.nvim'
+Plug 'stevearc/dressing.nvim'
 
 " lsp, highlight, completion
 Plug 'neovim/nvim-lspconfig'
@@ -204,6 +204,14 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'zbirenbaum/copilot.lua'
 
+" Language specific
+Plug 'cuducos/yaml.nvim'
+
+" Run, Debug
+Plug 'stevearc/overseer.nvim'
+Plug 'sakhnik/nvim-gdb'
+Plug 'mfussenegger/nvim-dap'
+
 " Typefocus
 Plug 'folke/zen-mode.nvim'
 Plug 'folke/twilight.nvim'
@@ -218,6 +226,9 @@ Plug '3rd/image.nvim'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-focus/focus.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'gaborvecsei/cryptoprice.nvim'
+Plug 'rmagatti/auto-session'
+Plug 'pogyomo/submode.nvim'
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'
