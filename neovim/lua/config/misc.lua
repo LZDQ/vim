@@ -117,3 +117,7 @@ submode.create(
 		rhs = "<C-F>",
 	}
 )
+
+local sudoku = require('sudoku')
+sudoku.setup{
+}

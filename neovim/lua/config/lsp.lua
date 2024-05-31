@@ -113,7 +113,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		--vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
 		vim.keymap.set('n', '<F18>', vim.lsp.buf.rename, opts) -- Shift + F6
 		--vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+		vim.keymap.set('n', 'gR', vim.lsp.buf.references, opts)
 		-- Format current line
 		vim.keymap.set('n', '<leader>=', function()
 			local line = vim.api.nvim_win_get_cursor(0)[1]

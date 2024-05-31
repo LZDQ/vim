@@ -171,7 +171,6 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 
 "Skin, Buffer
 Plug 'nvim-lualine/lualine.nvim'
-"Plug 'nvim-tree/nvim-web-devicons'
 " Plug 'navarasu/onedark.nvim'
 Plug 'folke/tokyonight.nvim'
 Plug 'LZDQ/umbra.nvim'
@@ -229,13 +228,16 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gaborvecsei/cryptoprice.nvim'
 Plug 'rmagatti/auto-session'
 Plug 'pogyomo/submode.nvim'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'bkad/CamelCaseMotion'
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ggandor/leap.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
+Plug 'nvim-telescope/telescope.nvim', " { 'tag': '0.1.6' }
+Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2'}
 
 " interactive python
 Plug 'benlubas/molten-nvim', { 'do': ':UpdateRemotePlugins' }
@@ -246,18 +248,21 @@ Plug 'kana/vim-textobj-user'
 Plug 'fvictorio/vim-textobj-backticks'  " `
 "Plug 'D4KU/vim-textobj-chainmember'  " m
 "Plug 'glts/vim-textobj-comment'  " c
-"Plug 'rhysd/vim-textobj-continuous-line'  " v
-"Plug 'kana/vim-textobj-function'  " f
-"Plug 'kana/vim-textobj-indent'  " i, I
 Plug 'pianohacker/vim-textobj-indented-paragraph'  " r, g(  and g) for jump
-"Plug 'vimtaku/vim-textobj-keyvalue'  " ak for key, iv for value
-Plug 'kana/vim-textobj-lastpat'  " /
-"Plug 'sgur/vim-textobj-parameter'  " ,
-"Plug 'lucapette/vim-textobj-underscore'  " _
 Plug 'jceb/vim-textobj-uri'  " iu for URL, go to open the URL
 Plug 'Julian/vim-textobj-variable-segment'  " v
-"Plug 'bps/vim-textobj-python'  " python specific. af if for function, [pf, ]pf for jump function
 Plug 'tkhren/vim-textobj-numeral'  " numbers.
+
+" Games
+Plug 'ThePrimeagen/vim-be-good'
+Plug 'alec-gibson/nvim-tetris'
+Plug 'seandewar/nvimesweeper'
+Plug 'seandewar/killersheep.nvim'
+Plug 'rktjmp/playtime.nvim'
+Plug 'Eandrju/cellular-automaton.nvim'
+" Plug 'alanfortlink/blackjack.nvim'
+Plug 'jim-fx/sudoku.nvim'
+
 call plug#end()
 
 
@@ -291,6 +296,8 @@ set cursorlineopt=number
 set termguicolors
 
 
+nnoremap > <Plug>CamelCaseMotion_w
+nnoremap < <Plug>CamelCaseMotion_b
 
 
 
