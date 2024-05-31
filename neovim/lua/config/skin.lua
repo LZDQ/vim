@@ -45,7 +45,7 @@ local umbra = require('umbra')
 
 umbra.setup {
 	-- Main options --
-	style = 'rose',             -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+	style = 'moonlight',             -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 	transparent = false,          -- Show/hide background
 	term_colors = true,           -- Change terminal color as per the selected theme style
 	ending_tildes = false,        -- Show the end-of-buffer tildes. By default they are hidden
@@ -53,7 +53,18 @@ umbra.setup {
 
 	-- toggle theme style ---
 	toggle_style_key = '!',                                                    -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
-	toggle_style_list = { 'lumen',  'rose', 'deep', 'warm',  'light' }, -- List of styles to toggle between
+	toggle_style_list = {
+		'bloodmoon',
+		'moonlight',
+		'darkest',
+		-- 'deep',
+		-- 'warm',
+		'warmer',
+		-- 'dark',
+		-- 'darker',
+		'cool',
+		'light',
+	}, -- List of styles to toggle between
 
 	-- Change code style ---
 	-- Options are italic, bold, underline, none

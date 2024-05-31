@@ -18,11 +18,11 @@ inoremap <C-V> <ESC>"+pa
 nnoremap <leader>z z
 nnoremap z %
 onoremap z %
+vnoremap z %
 " nnoremap dz d%
 " nnoremap =z =%
 " nnoremap gz V%
 nnoremap Z za
-vnoremap z %
 vnoremap Z zf
 nnoremap + zR
 nnoremap - zM
@@ -33,7 +33,7 @@ set foldmethod=manual
 nnoremap <C-C> gg"+yG
 vnoremap <C-C> "+y
 nnoremap <space> $
-vnoremap <space> $
+onoremap <space> $
 nnoremap <BS> zz
 nnoremap <PageUp> <C-U>
 nnoremap <PageDown> <C-D>
@@ -171,9 +171,8 @@ call plug#begin('~/.local/share/nvim/site/plugged')
 
 "Skin, Buffer
 Plug 'nvim-lualine/lualine.nvim'
-" Plug 'navarasu/onedark.nvim'
 Plug 'folke/tokyonight.nvim'
-Plug 'LZDQ/umbra.nvim'
+Plug 'LZDQ/umbra.nvim' " forked from 'navarasu/onedark.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'elihunter173/dirbuf.nvim'
 " Plug 'nvim-neo-tree/neo-tree.nvim'
