@@ -139,12 +139,11 @@ copilot.setup {
 		enabled = true,
 		auto_refresh = true,
 		keymap = {
-			-- These keymappings don't work for now
-			jump_prev = "[",
-			jump_next = "]",
+			jump_prev = "[[",
+			jump_next = "]]",
 			accept = "<CR>",
-			refresh = "<F5>",
-			open = "<leader>p"
+			-- refresh = "<F5>",
+			-- open = "<leader>p",
 		},
 		layout = {
 			position = "right", -- | top | left | right
@@ -179,6 +178,7 @@ copilot.setup {
 	server_opts_overrides = {},
 }
 
+
 --[[ local sug = require 'copilot.suggestion'
 vim.keymap.set('i', '<C-CR>', function() 
 	if sug.visible then
@@ -203,4 +203,3 @@ vim.keymap.set('n', '<leader>p', function()
 		ratio = 0.4,
 	})
 end)
-
