@@ -235,6 +235,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ggandor/leap.nvim'
+" Plug 'ggandor/flit.nvim'
+Plug 'rhysd/clever-f.vim'
 Plug 'nvim-telescope/telescope.nvim', " { 'tag': '0.1.6' }
 Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2'}
 
@@ -288,6 +290,9 @@ onoremap ax <Plug>(textobj-numeral-hex-a)
 " nnoremap gnn <Plug>(textobj-numeral-n)
 " nnoremap gpn <Plug>(textobj-numeral-p)
 
+let g:clever_f_across_no_line = 1
+let g:clever_f_timeout_ms = 1500
+let g:clever_f_highlight_timeout_ms = g:clever_f_timeout_ms
 
 
 set cursorline

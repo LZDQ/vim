@@ -3,10 +3,9 @@
 
 -- require('leap').create_default_mappings()
 local leap = require('leap')
-vim.keymap.set('n', 'f', '<Plug>(leap-forward)')
-vim.keymap.set('n', 'F', '<Plug>(leap-backward)')
-vim.keymap.set('n', 'gf', '<Plug>(leap-from-window)')
-leap.opts.safe_labels = 'fnug/FHLUNS?'
+vim.keymap.set('n', 'S', '<Plug>(leap)')
+vim.keymap.set('n', '<leader>S', '<Plug>(leap-from-window)')
+leap.opts.safe_labels = 'fnugzmwebt/FHLUNSBWETQ?'
 -- leap.opts.labels = 'fnjklhodweimbuyvrgtaqpcxz/SFNJKLHODWEIMBUYVRGTAQPCXZ?'
 leap.opts.labels = ''
 
