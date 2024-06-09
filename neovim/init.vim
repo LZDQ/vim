@@ -71,25 +71,21 @@ set guicursor=n-v-c-i:block
 " Note: <S-Fx> is x+12, <C-Fx> is x+24, <S-C-Fx> is x+36, <A-Fx> is x_48
 " Use insert mode to type them
 au TermOpen * startinsert
-au FileType * nnoremap <F12> :w<CR>:term bash run.sh<CR>
-au FileType python nnoremap <F9> :w<CR>:term python %<CR>
-au FileType python nnoremap <F33> :w<CR>:term python -i %<CR>
-au FileType python nnoremap <F57> :w<CR>:term python -m pdb %<CR>
-au FileType cpp nnoremap <F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
-au FileType cpp nnoremap <F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
-au FileType cpp nnoremap <F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
-au FileType cpp nnoremap <F10> :term ./%<<CR>
-au FileType cpp nnoremap <F4> :term cf test %<CR>
-au FileType cpp nnoremap <F5> :term cf submit -f %<CR>
-au FileType cpp tnoremap <F4> <CR>:term cf test %<CR>
-au FileType cpp tnoremap <F5> <CR>:term cf submit -f %<CR>
-"au FileType cpp tnoremap <F9> <CR>:term g++ % -o %< -std=c++17<CR>
-au FileType cpp tnoremap <F10> <CR>:term ./%<<CR>
-au FileType c nnoremap <F9> :w<CR>:term gcc % -o %<<CR>
-au FileType c nnoremap <F10> :term ./%<<CR>
-au FileType tex nnoremap <F9> :w<CR>:term xelatex %<CR>
-au FileType sh nnoremap <F9> :w<CR>:term bash %<CR>
-au FileType javascript nnoremap <F9> :w<CR>:term node %<CR>
+nnoremap <F12> :w<CR>:term bash run.sh<CR>
+au FileType python nnoremap <buffer><F9> :w<CR>:term python %<CR>
+au FileType python nnoremap <buffer><F33> :w<CR>:term python -i %<CR>
+au FileType python nnoremap <buffer><F57> :w<CR>:term python -m pdb %<CR>
+au FileType cpp nnoremap <buffer><F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
+au FileType cpp nnoremap <buffer><F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
+au FileType cpp nnoremap <buffer><F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
+au FileType cpp nnoremap <buffer><F10> :term ./%<<CR>
+au FileType cpp nnoremap <buffer><F5> :term cf test %<CR>
+au FileType cpp nnoremap <buffer><F29> :term cf submit -f %<CR>
+au FileType c nnoremap <buffer><F9> :w<CR>:term gcc % -o %<<CR>
+au FileType c nnoremap <buffer><F10> :term ./%<<CR>
+au FileType tex nnoremap <buffer><F9> :w<CR>:term xelatex %<CR>
+au FileType sh nnoremap <buffer><F9> :w<CR>:term bash %<CR>
+au FileType javascript nnoremap <buffer><F9> :w<CR>:term node %<CR>
 
 
 function WriteFor(str)

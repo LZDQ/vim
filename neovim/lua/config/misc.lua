@@ -99,7 +99,7 @@ submode.setup{
 submode.create(
 	"FastScroll", {
 		mode = "n",
-		enter = "<C-N>",
+		enter = "<F3>",
 		leave = { "q", "<ESC>" },
 		enter_cb = function() vim.notify("Enable FastScroll") end,
 		leave_cb = function() vim.notify("Disable FastScroll") end,

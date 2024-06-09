@@ -71,8 +71,8 @@ end
 
 vim.keymap.set("n", ";a", function() harpoon:list():add() end)
 vim.keymap.set("n", ";h", function()
-	toggle_telescope(harpoon:list())
-	-- harpoon.ui:toggle_quick_menu(harpoon:list())
+	-- toggle_telescope(harpoon:list())
+	harpoon.ui:toggle_quick_menu(harpoon:list())
 end, { desc = "Open harpoon window" }
 )
 -- Switch to harpoon buffer

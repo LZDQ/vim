@@ -55,7 +55,7 @@ noice.setup {
 			cmdline = { pattern = "^:", icon = ":", lang = "vim" },
 			search_down = { kind = "search", pattern = "^/", icon = "/", lang = "regex" },
 			search_up = { kind = "search", pattern = "^%?", icon = "?", lang = "regex" },
-			filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
+			filter = { pattern = "^:%s*!", icon = "$", lang = "bash", title = "Shell" },
 			lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "Lua", lang = "lua" },
 			--help = { pattern = "^:%s*he?l?p?%s+", icon = "Help" },
 			help = false,
