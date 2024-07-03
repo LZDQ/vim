@@ -252,6 +252,7 @@ Plug 'pianohacker/vim-textobj-indented-paragraph'  " r, g(  and g) for jump
 Plug 'jceb/vim-textobj-uri'  " iu for URL, go to open the URL
 Plug 'Julian/vim-textobj-variable-segment'  " v
 Plug 'tkhren/vim-textobj-numeral'  " numbers.
+Plug 'kana/vim-textobj-lastpat' " search pat
 
 " Games
 Plug 'ThePrimeagen/vim-be-good'
@@ -305,7 +306,7 @@ set termguicolors
 nnoremap > <Plug>CamelCaseMotion_w
 nnoremap < <Plug>CamelCaseMotion_b
 
-nnoremap <silent>t :OverseerOpen<CR>
+nnoremap <silent>t :OverseerToggle<CR>
 
 
 " Custom lua configs (packaged)
