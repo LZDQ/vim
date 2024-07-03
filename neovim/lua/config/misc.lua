@@ -1,7 +1,3 @@
-require("neodev").setup {
-	-- add any options here, or leave empty to use the default settings
-}
-
 require('Comment').setup {
 	---Add a space b/w comment and the line
 	padding = true,
@@ -50,24 +46,31 @@ require('Comment').setup {
 vim.cmd([[autocmd FileType * set formatoptions-=o]])
 
 
-require('nvim-autopairs').setup {
+local autopairs = require('nvim-autopairs')
+autopairs.setup {
+
 	disable_filetype = { "TelescopePrompt", "spectre_panel" },
-	disable_in_macro = true,        -- disable when recording or executing a macro
+	disable_in_macro = true,     -- disable when recording or executing a macro
 	disable_in_visualblock = false, -- disable when insert after visual block mode
 	disable_in_replace_mode = true,
 	ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
 	enable_moveright = true,
-	enable_afterquote = true,         -- add bracket pairs after quote
+	enable_afterquote = true,      -- add bracket pairs after quote
 	enable_check_bracket_line = true, --- check bracket in same line
-	enable_bracket_in_quote = true,   --
-	enable_abbr = false,              -- trigger abbreviation
-	break_undo = true,                -- switch for basic rule break undo sequence
+	enable_bracket_in_quote = true, --
+	enable_abbr = false,           -- trigger abbreviation
+	break_undo = true,             -- switch for basic rule break undo sequence
 	check_ts = false,
 	map_cr = true,
-	map_bs = true,   -- map the <BS> key
-	map_c_h = false, -- Map the <C-h> key to delete a pair
+	map_bs = true, -- map the <BS> key
+	map_c_h = false, -- map the <C-h> key to delete a pair
 	map_c_w = false, -- map <c-w> to delete a pair if possible
 }
+
+
+
+
+
 
 local cryptoprice = require("cryptoprice")
 cryptoprice.setup {
@@ -76,48 +79,67 @@ cryptoprice.setup {
 	window_height = 10,
 	window_width = 60
 }
-vim.g.cryptoprice_crypto_list = {"bitcoin", "ethereum", "the-open-network"}
+vim.g.cryptoprice_crypto_list = { "bitcoin", "ethereum", "the-open-network" }
 -- Register a new command ':CryptoPrice' to toggle cryptoprice
 -- vim.api.nvim_create_user_command('CryptoPrice', cryptoprice.toggle, {}) -- Use CryptoPriceToggle
 
 
-require("auto-session").setup {
-	log_level = "error",
-
-	cwd_change_handling = {
-		restore_upcoming_session = true, -- already the default, no need to specify like this, only here as an example
-		pre_cwd_changed_hook = nil,    -- already the default, no need to specify like this, only here as an example
-		post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes
-			require("lualine").refresh() -- refresh lualine so the new session name is displayed in the status bar
+-- Convert the cwd to a simple file name
+local function get_cwd_as_name()
+	local dir = vim.fn.getcwd(0)
+	return dir:gsub("[^A-Za-z0-9]", "_")
+end
+local overseer = require("overseer")
+require("auto-session").setup({
+	pre_save_cmds = {
+		function()
+			overseer.save_task_bundle(
+				get_cwd_as_name(),
+				-- Passing nil will use config.opts.save_task_opts. You can call list_tasks() explicitly and
+				-- pass in the results if you want to save specific tasks.
+				nil,
+				{ on_conflict = "overwrite" } -- Overwrite existing bundle, if any
+			)
 		end,
 	},
-}
+	-- Optionally get rid of all previous tasks when restoring a session
+	pre_restore_cmds = {
+		function()
+			for _, task in ipairs(overseer.list_tasks({})) do
+				task:dispose(true)
+			end
+		end,
+	},
+	post_restore_cmds = {
+		function()
+			overseer.load_task_bundle(get_cwd_as_name(), { ignore_missing = true, autostart = false })
+		end,
+	},
+})
 
-local submode = require('submode')
-submode.setup{
-}
-submode.create(
-	"FastScroll", {
-		mode = "n",
-		enter = "<F3>",
-		leave = { "q", "<ESC>" },
-		enter_cb = function() vim.notify("Enable FastScroll") end,
-		leave_cb = function() vim.notify("Disable FastScroll") end,
-	}, {
-		lhs = "d",
-		rhs = "<C-D>",
-	}, {
-		lhs = "u",
-		rhs = "<C-U>",
-	}, {
-		lhs = "b",
-		rhs = "<C-B>",
-	}, {
-		lhs = "f",
-		rhs = "<C-F>",
-	}
-)
+require('usage-tracker').setup({
+	keep_eventlog_days = 14,
+	cleanup_freq_days = 7,
+	event_wait_period_in_sec = 5,
+	inactivity_threshold_in_min = 5,
+	inactivity_check_freq_in_sec = 5,
+	verbose = 0,
+	telemetry_endpoint = "" -- you'll need to start the restapi for this feature
+})
 
-local sudoku = require('sudoku')
-sudoku.setup{
+require("link-visitor").setup {
+	open_cmd = nil,
+	--[[
+	1. cmd to open url
+	defaults:
+	win or wsl: cmd.exe /c start
+	mac: open
+	linux: xdg-open
+	2. a function to handle the link
+	the function signature: func(link: string)
+	--]]
+	silent = true,         -- disable all prints, `false` by defaults skip_confirmation
+	skip_confirmation = true, -- Skip the confirmation step, default: false
+	border = "rounded"     -- none, single, double, rounded, solid, shadow see `:h nvim_open_win()`
 }
+vim.keymap.set('n', ';v', ':VisitLinkNearCursor<CR>', { noremap = true, silent = true })

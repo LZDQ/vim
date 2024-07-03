@@ -26,6 +26,8 @@ lspconfig.clangd.setup {
 }
 
 
+-- https://luals.github.io/#neovim-install
+-- or sudo pacman -S lua-language-server
 lspconfig.lua_ls.setup {
 	autostart = true,
 	settings = {
@@ -132,4 +134,3 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', 'g=', vim.lsp.buf.format, opts)
 	end
 })
-return lspconfig

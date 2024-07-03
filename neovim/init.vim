@@ -48,6 +48,7 @@ nnoremap <silent>Q :q<CR>
 nnoremap <leader>q q
 nmap q <C-L>
 vnoremap q <ESC>
+nnoremap <silent>dv V%d
 
 set tabstop=4
 set shiftwidth=4
@@ -68,24 +69,25 @@ nnoremap b <Plug>(smartword-b)
 set guicursor=n-v-c-i:block
 
 " Compile
-" Note: <S-Fx> is x+12, <C-Fx> is x+24, <S-C-Fx> is x+36, <A-Fx> is x_48
+" Note: <S-Fx> is x+12, <C-Fx> is x+24, <S-C-Fx> is x+36, <A-Fx> is x+48
 " Use insert mode to type them
 au TermOpen * startinsert
-nnoremap <F12> :w<CR>:term bash run.sh<CR>
+" nnoremap <silent><F12> :w<CR>:term bash run.sh<CR>
 au FileType python nnoremap <buffer><F9> :w<CR>:term python %<CR>
 au FileType python nnoremap <buffer><F33> :w<CR>:term python -i %<CR>
 au FileType python nnoremap <buffer><F57> :w<CR>:term python -m pdb %<CR>
-au FileType cpp nnoremap <buffer><F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
-au FileType cpp nnoremap <buffer><F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
-au FileType cpp nnoremap <buffer><F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
-au FileType cpp nnoremap <buffer><F10> :term ./%<<CR>
-au FileType cpp nnoremap <buffer><F5> :term cf test %<CR>
-au FileType cpp nnoremap <buffer><F29> :term cf submit -f %<CR>
+" au FileType cpp nnoremap <buffer><F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
+" au FileType cpp nnoremap <buffer><F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
+" au FileType cpp nnoremap <buffer><F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
+" au FileType cpp nnoremap <buffer><F10> :term ./%<<CR>
+" au FileType cpp nnoremap <buffer><F5> :term cf test %<CR>
+" au FileType cpp nnoremap <buffer><F29> :term cf submit -f %<CR>
 au FileType c nnoremap <buffer><F9> :w<CR>:term gcc % -o %<<CR>
 au FileType c nnoremap <buffer><F10> :term ./%<<CR>
 au FileType tex nnoremap <buffer><F9> :w<CR>:term xelatex %<CR>
 au FileType sh nnoremap <buffer><F9> :w<CR>:term bash %<CR>
 au FileType javascript nnoremap <buffer><F9> :w<CR>:term node %<CR>
+
 
 
 function WriteFor(str)
@@ -192,7 +194,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'lukas-reineke/cmp-under-comparator'
 Plug 'milisims/nvim-luaref'
 "Plug 'folke/lua-dev.nvim'
-Plug 'folke/neodev.nvim'
+" Plug 'folke/neodev.nvim'
 Plug 'milisims/nvim-luaref'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
@@ -222,9 +224,10 @@ Plug 'nvim-focus/focus.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gaborvecsei/cryptoprice.nvim'
 Plug 'rmagatti/auto-session'
-Plug 'pogyomo/submode.nvim'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'bkad/CamelCaseMotion'
+Plug 'gaborvecsei/usage-tracker.nvim'
+Plug 'xiyaowong/link-visitor.nvim'
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'
@@ -286,9 +289,12 @@ onoremap ax <Plug>(textobj-numeral-hex-a)
 " nnoremap gnn <Plug>(textobj-numeral-n)
 " nnoremap gpn <Plug>(textobj-numeral-p)
 
+let g:clever_f_not_overwrites_standard_mappings = 1
 let g:clever_f_across_no_line = 1
 let g:clever_f_timeout_ms = 1500
 let g:clever_f_highlight_timeout_ms = g:clever_f_timeout_ms
+nnoremap f <Plug>(clever-f-f)
+nnoremap F <Plug>(clever-f-F)
 
 
 set cursorline
@@ -299,6 +305,7 @@ set termguicolors
 nnoremap > <Plug>CamelCaseMotion_w
 nnoremap < <Plug>CamelCaseMotion_b
 
+nnoremap <silent>t :OverseerOpen<CR>
 
 
 " Custom lua configs (packaged)

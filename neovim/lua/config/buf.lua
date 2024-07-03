@@ -38,6 +38,7 @@ vim.keymap.set('n', ';d', function()
 		vim.cmd('Dirbuf')
 	end
 end)
+vim.keymap.set('n', '<C-W><C-D>', ':bd<CR>', { silent = true })
 
 local noice = require('noice')
 noice.setup {
