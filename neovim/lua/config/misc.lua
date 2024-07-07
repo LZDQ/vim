@@ -61,13 +61,28 @@ autopairs.setup {
 	enable_abbr = false,           -- trigger abbreviation
 	break_undo = true,             -- switch for basic rule break undo sequence
 	check_ts = false,
-	map_cr = true,
+	map_cr = false,
 	map_bs = true, -- map the <BS> key
 	map_c_h = false, -- map the <C-h> key to delete a pair
 	map_c_w = false, -- map <c-w> to delete a pair if possible
 }
 
+-- vim.api.nvim_set_keymap('i', '<CR>', "v:lua.require'nvim-autopairs'.completion_confirm()", { expr = true, noremap = true })
+vim.keymap.set('i', '<CR>', function()
+	-- autopairs
+	vim.api.nvim_feedkeys(autopairs.completion_confirm(), 'n', false)
 
+	-- center if not within range
+	local total_lines = vim.api.nvim_win_get_height(0)
+	local current_line = vim.fn.winline()
+	local l = 0
+	local r = math.floor(total_lines * 2 / 3)
+
+	if current_line < l or current_line > r then
+		-- Center the current line
+		vim.cmd('normal! zz')
+	end
+end, { noremap = true })
 
 
 

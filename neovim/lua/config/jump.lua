@@ -34,6 +34,7 @@ vim.keymap.set('n', ';b', function() vim.cmd("Buffers") end, {})
 vim.keymap.set('n', ';B', builtin.buffers, {})
 vim.keymap.set('n', ';l', function() vim.cmd("Lines") end, {})
 vim.keymap.set('n', ';t', builtin.builtin, {})
+vim.keymap.set('n', ';k', builtin.keymaps, {})
 
 -- " fzf in CURRENT buffer
 -- nnoremap <silent>;l :Lines<CR>
