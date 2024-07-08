@@ -72,6 +72,7 @@ set guicursor=n-v-c-i:block
 " Note: <S-Fx> is x+12, <C-Fx> is x+24, <S-C-Fx> is x+36, <A-Fx> is x+48
 " Use insert mode to type them
 au TermOpen * startinsert
+au TermOpen * tnoremap <buffer> <leader><ESC> <C-\><C-N>
 " nnoremap <silent><F12> :w<CR>:term bash run.sh<CR>
 au FileType python nnoremap <buffer><F9> :w<CR>:term python %<CR>
 au FileType python nnoremap <buffer><F33> :w<CR>:term python -i %<CR>
@@ -228,6 +229,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'bkad/CamelCaseMotion'
 Plug 'gaborvecsei/usage-tracker.nvim'
 Plug 'xiyaowong/link-visitor.nvim'
+Plug 'voldikss/vim-floaterm'
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'

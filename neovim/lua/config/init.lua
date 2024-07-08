@@ -1,5 +1,4 @@
--- vim.opt.runtimepath:append("/home/ldq/umbra.nvim")
-_G.__is_log = true
+-- _G.__is_log = true
 
 require('config.skin')
 require('config.buf')

@@ -80,7 +80,10 @@ vim.keymap.set('i', '<CR>', function()
 
 	if current_line < l or current_line > r then
 		-- Center the current line
-		vim.cmd('normal! zz')
+		-- vim.cmd('normal! zz')  This is problematic at end of line
+		vim.defer_fn(function ()
+			vim.cmd('normal! zz')
+		end, 0)
 	end
 end, { noremap = true })
 
@@ -95,8 +98,6 @@ cryptoprice.setup {
 	window_width = 60
 }
 vim.g.cryptoprice_crypto_list = { "bitcoin", "ethereum", "the-open-network" }
--- Register a new command ':CryptoPrice' to toggle cryptoprice
--- vim.api.nvim_create_user_command('CryptoPrice', cryptoprice.toggle, {}) -- Use CryptoPriceToggle
 
 
 -- Convert the cwd to a simple file name
