@@ -303,12 +303,11 @@ nnoremap F <Plug>(clever-f-F)
 set cursorline
 set cursorlineopt=number
 set termguicolors
-
+set formatoptions-=o
 
 nnoremap > <Plug>CamelCaseMotion_w
 nnoremap < <Plug>CamelCaseMotion_b
 
-nnoremap <silent>t :OverseerToggle<CR>
 
 
 " Custom lua configs (packaged)

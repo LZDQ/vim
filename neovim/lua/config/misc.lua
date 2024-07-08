@@ -43,7 +43,6 @@ require('Comment').setup {
 	post_hook = nil,
 }
 
-vim.cmd([[autocmd FileType * set formatoptions-=o]])
 
 
 local autopairs = require('nvim-autopairs')
@@ -106,6 +105,9 @@ local function get_cwd_as_name()
 	return dir:gsub("[^A-Za-z0-9]", "_")
 end
 local overseer = require("overseer")
+
+vim.keymap.set('n', ';o', overseer.open, { noremap = true })
+
 require("auto-session").setup({
 	pre_save_cmds = {
 		function()
