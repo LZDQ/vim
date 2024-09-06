@@ -77,10 +77,12 @@ au TermOpen * tnoremap <buffer> <leader><ESC> <C-\><C-N>
 au FileType python nnoremap <buffer><F9> :w<CR>:term python %<CR>
 au FileType python nnoremap <buffer><F33> :w<CR>:term python -i %<CR>
 au FileType python nnoremap <buffer><F57> :w<CR>:term python -m pdb %<CR>
-" au FileType cpp nnoremap <buffer><F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
-" au FileType cpp nnoremap <buffer><F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
-" au FileType cpp nnoremap <buffer><F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
-" au FileType cpp nnoremap <buffer><F10> :term ./%<<CR>
+au FileType cpp nnoremap <buffer><F9> :w<CR>:term g++ % -o %< -std=c++17<CR>
+" A-F9
+au FileType cpp nnoremap <buffer><F57> :w<CR>:term g++ % -o %< -std=c++17 -O2<CR>
+" C-F9
+au FileType cpp nnoremap <buffer><F33> :w<CR>:term g++ % -o %< -std=c++17 -Wall -g -fsanitize=undefined<CR>
+au FileType cpp nnoremap <buffer><F10> :term ./%<<CR>
 " au FileType cpp nnoremap <buffer><F5> :term cf test %<CR>
 " au FileType cpp nnoremap <buffer><F29> :term cf submit -f %<CR>
 au FileType c nnoremap <buffer><F9> :w<CR>:term gcc % -o %<<CR>
@@ -164,7 +166,7 @@ endfunction
 autocmd FileType cpp inoremap <C-F> <esc>:call WriteFor("")<left><left>
 autocmd FileType cpp inoremap <C-U> <esc>:call WriteEdge("")<left><left>
 autocmd FileType cpp inoremap <C-C> <esc>:call WriteScanf("")<left><left>
-autocmd FileType cpp nnoremap <F8> :r ~/cf/template/
+autocmd FileType cpp nnoremap <F8> :r ~/OI/tem/
 
 call plug#begin('~/.local/share/nvim/site/plugged')
 
@@ -212,6 +214,9 @@ Plug 'mfussenegger/nvim-dap'
 " Typefocus
 Plug 'folke/zen-mode.nvim'
 Plug 'folke/twilight.nvim'
+Plug 'shortcuts/no-neck-pain.nvim'
+Plug 'LZDQ/nvim-autocenter'
+" Plug '/home/ldq/nvim-autocenter'
 
 " Misc
 Plug 'vim-scripts/restore_view.vim'
@@ -230,6 +235,7 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'gaborvecsei/usage-tracker.nvim'
 Plug 'xiyaowong/link-visitor.nvim'
 Plug 'voldikss/vim-floaterm'
+Plug 'mistricky/codesnap.nvim', { 'do': 'make' }
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'
@@ -303,12 +309,15 @@ nnoremap F <Plug>(clever-f-F)
 set cursorline
 set cursorlineopt=number
 set termguicolors
-set formatoptions-=o
+au FileType * set formatoptions-=o
 
 nnoremap > <Plug>CamelCaseMotion_w
 nnoremap < <Plug>CamelCaseMotion_b
 
 
+" au TextChangedI * call v:lua.vim.notify("text changed I")
+" au InsertEnter * call v:lua.vim.notify("insert enter")
+" au InsertCharPre * call v:lua.vim.notify("insert char pre")
 
-" Custom lua configs (packaged)
 lua require('config')
+

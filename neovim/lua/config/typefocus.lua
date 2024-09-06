@@ -92,3 +92,7 @@ require 'twilight'.setup {
 	},
 	exclude = {}, -- exclude these filetypes
 }
+
+require 'nvim-autocenter'.setup {
+	-- when = "never",
+}
