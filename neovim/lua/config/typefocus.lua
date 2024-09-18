@@ -94,5 +94,5 @@ require 'twilight'.setup {
 }
 
 require 'nvim-autocenter'.setup {
-	-- when = "never",
+	-- when = "always",
 }

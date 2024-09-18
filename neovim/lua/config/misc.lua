@@ -90,6 +90,7 @@ end
 local overseer = require("overseer")
 
 vim.keymap.set('n', ';o', overseer.open, { noremap = true })
+vim.keymap.set('n', ';r', overseer.run_template, { noremap = true })
 
 require("auto-session").setup({
 	pre_save_cmds = {

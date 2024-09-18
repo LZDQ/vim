@@ -56,39 +56,48 @@ lspconfig.lua_ls.setup {
 -- lspconfig.biome.setup{}
 
 -- npm i -g vscode-langservers-extracted
-lspconfig.html.setup{}
-lspconfig.cssls.setup{}
-lspconfig.jsonls.setup{}
-lspconfig.eslint.setup{}
+lspconfig.html.setup {}
+lspconfig.cssls.setup {}
+lspconfig.jsonls.setup {}
+lspconfig.eslint.setup {
+	root_dir = lspconfig.util.root_pattern('.git', 'package.json', '.eslintrc.json', '.eslintrc.js'),
+	on_attach = function(client, bufnr)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			command = "EslintFixAll",
+		})
+	end,
+}
+lspconfig.ts_ls.setup {}
 
 -- npm i -g @olrtg/emmet-language-server
-lspconfig.emmet_language_server.setup{}
+lspconfig.emmet_language_server.setup {}
 
 -- npm install -g dockerfile-language-server-nodejs
-lspconfig.dockerls.setup{}
+lspconfig.dockerls.setup {}
 
 -- npm install -g @microsoft/compose-language-service
-lspconfig.docker_compose_language_service.setup{}
+lspconfig.docker_compose_language_service.setup {}
 
 -- npm install -g --save-dev @babel/core @babel/cli @babel/preset-flow babel-plugin-syntax-hermes-parser
 -- lspconfig.flow.setup{}
 
-lspconfig.marksman.setup{}
+lspconfig.marksman.setup {}
 
 -- cargo install neocmakelsp
 -- lspconfig.neocmake.setup{}
 
 -- npm install -g vim-language-server
-lspconfig.vimls.setup{}
+lspconfig.vimls.setup {}
 
 -- npm i -g sql-language-server
-lspconfig.sqlls.setup{}
+lspconfig.sqlls.setup {}
 
 -- npm install -g vls
-lspconfig.vls.setup{}
+lspconfig.vls.setup {}
 
 -- dotnet tool install --global csharp-ls
-lspconfig.csharp_ls.setup{}
+lspconfig.csharp_ls.setup {}
 
 
 -- Use LspAttach autocommand to only map the following keys
