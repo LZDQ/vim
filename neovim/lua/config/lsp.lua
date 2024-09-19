@@ -99,6 +99,12 @@ lspconfig.vls.setup {}
 -- dotnet tool install --global csharp-ls
 lspconfig.csharp_ls.setup {}
 
+-- go install github.com/nametake/golangci-lint-langserver@latest
+-- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+lspconfig.golangci_lint_ls.setup {}
+
+-- go install golang.org/x/tools/gopls@latest
+lspconfig.gopls.setup {}
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
