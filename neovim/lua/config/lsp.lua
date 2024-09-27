@@ -106,8 +106,9 @@ lspconfig.golangci_lint_ls.setup {}
 -- go install golang.org/x/tools/gopls@latest
 lspconfig.gopls.setup {}
 
--- npm i -g vscode-langservers-extracted
-lspconfig.html.setup {}
+-- https://github.com/latex-lsp/texlab
+-- brew install texlab
+lspconfig.texlab.setup {}
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
