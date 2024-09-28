@@ -1,3 +1,4 @@
+-- Configuration at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local lspconfig = require('lspconfig')
 
 -- npm install -g pyright
@@ -109,6 +110,11 @@ lspconfig.gopls.setup {}
 -- https://github.com/latex-lsp/texlab
 -- brew install texlab
 lspconfig.texlab.setup {}
+
+-- https://github.com/arduino/arduino-language-server
+-- go install github.com/arduino/arduino-language-server@latest
+-- Config at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#arduino_language_server
+lspconfig.arduino_language_server.setup {}
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
