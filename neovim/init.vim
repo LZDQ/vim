@@ -44,6 +44,7 @@ nnoremap <DOWN> <C-E>
 nnoremap <LEFT> zH
 nnoremap <RIGHT> zL
 nnoremap <silent> <TAB> :bn<CR>
+nnoremap <silent> <S-TAB> :bp<CR>
 nnoremap <silent>Q :q<CR>
 nnoremap <leader>q q
 nmap q <C-L>
