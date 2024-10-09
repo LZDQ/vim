@@ -25,6 +25,31 @@ lspconfig.pyright.setup {
 lspconfig.clangd.setup {
 	autostart = true,
 }
+-- Assembly support   https://github.com/bergercookie/asm-lsp
+-- For RISC-V, use the following .asm-lsp.toml
+--
+-- version = "0.1"
+--
+-- [assemblers]
+-- gas = true
+-- go = false
+-- z80 = false
+-- masm = false
+-- nasm = false
+--
+-- [instruction_sets]
+-- x86 = false
+-- x86_64 = false
+-- z80 = false
+-- arm = false
+-- riscv = true
+--
+-- [opts]
+-- compiler = "riscv64-unknown-elf-gcc"
+-- diagnostics = true
+-- default_diagnostics = true
+
+lspconfig.asm_lsp.setup{}
 
 
 -- https://luals.github.io/#neovim-install
