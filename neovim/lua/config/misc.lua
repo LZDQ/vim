@@ -145,3 +145,23 @@ require("link-visitor").setup {
 	border = "rounded"     -- none, single, double, rounded, solid, shadow see `:h nvim_open_win()`
 }
 vim.keymap.set('n', ';v', ':VisitLinkNearCursor<CR>', { noremap = true, silent = true })
+
+-- CTF
+local hex = require 'hex'
+hex.setup {
+	-- cli command used to dump hex data
+	-- dump_cmd = 'xxd -g 1 -u',
+
+	-- cli command used to assemble from hex data
+	-- assemble_cmd = 'xxd -r',
+
+	-- function that runs on BufReadPre to determine if it's binary or not
+	-- is_file_binary_pre_read = function()
+	-- end,
+
+	-- function that runs on BufReadPost to determine if it's binary or not
+	-- is_file_binary_post_read = function()
+	-- end,
+}
+
+vim.keymap.set('n', 'X', hex.toggle)

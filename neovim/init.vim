@@ -196,7 +196,6 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'lukas-reineke/cmp-under-comparator'
-Plug 'milisims/nvim-luaref'
 "Plug 'folke/lua-dev.nvim'
 " Plug 'folke/neodev.nvim'
 Plug 'milisims/nvim-luaref'
@@ -272,6 +271,9 @@ Plug 'rktjmp/playtime.nvim'
 Plug 'Eandrju/cellular-automaton.nvim'
 " Plug 'alanfortlink/blackjack.nvim'
 Plug 'jim-fx/sudoku.nvim'
+
+" CTF
+Plug 'RaafatTurki/hex.nvim'
 
 call plug#end()
 
