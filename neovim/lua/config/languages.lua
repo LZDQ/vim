@@ -32,6 +32,7 @@ overseer.setup {
 		bindings = {
 			["r"] = "<CMD>OverseerQuickAction run<CR>",
 			["D"] = "<CMD>OverseerQuickAction dispose<CR>",
+			["E"] = "<CMD>OverseerQuickAction edit<CR>",
 		}
 	},
 }

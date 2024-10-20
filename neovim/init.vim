@@ -16,12 +16,7 @@ inoremap <S-TAB> <TAB>
 inoremap <C-V> <ESC>"+pa
 
 nnoremap <leader>z z
-nnoremap z %
-onoremap z %
-vnoremap z %
-" nnoremap dz d%
-" nnoremap =z =%
-" nnoremap gz V%
+noremap z %
 nnoremap Z za
 vnoremap Z zf
 nnoremap + zR
@@ -32,9 +27,8 @@ set foldmethod=manual
 
 nnoremap <C-C> gg"+yG
 vnoremap <C-C> "+y
-nnoremap <space> $
-onoremap <space> $
-nnoremap <BS> zz
+noremap <space> $
+noremap <BS> zz
 nnoremap <PageUp> <C-U>
 nnoremap <PageDown> <C-D>
 nnoremap <HOME> <C-B>
@@ -50,6 +44,7 @@ nnoremap <leader>q q
 nmap q <C-L>
 vnoremap q <ESC>
 nnoremap <silent>dv V%d
+inoremap <C-H> <C-W>
 
 set tabstop=4
 set shiftwidth=4
@@ -205,6 +200,7 @@ Plug 'zbirenbaum/copilot.lua'
 
 " Language specific
 Plug 'cuducos/yaml.nvim'
+" Plug 'nvim-java/nvim-java'
 
 " Run, Debug
 Plug 'stevearc/overseer.nvim'

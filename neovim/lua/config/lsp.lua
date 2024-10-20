@@ -49,8 +49,10 @@ lspconfig.clangd.setup {
 -- diagnostics = true
 -- default_diagnostics = true
 
-lspconfig.asm_lsp.setup{}
+lspconfig.asm_lsp.setup {}
 
+-- pip install jedi-language-server
+-- lspconfig.jedi_language_server.setup {}
 
 -- https://luals.github.io/#neovim-install
 -- or sudo pacman -S lua-language-server
@@ -94,7 +96,7 @@ lspconfig.eslint.setup {
 		})
 	end,
 }
-lspconfig.ts_ls.setup {}
+-- lspconfig.ts_ls.setup {}
 
 -- npm i -g @olrtg/emmet-language-server
 lspconfig.emmet_language_server.setup {}
@@ -134,6 +136,7 @@ lspconfig.gopls.setup {}
 
 -- https://github.com/latex-lsp/texlab
 -- brew install texlab
+-- cargo install --git https://github.com/latex-lsp/texlab
 lspconfig.texlab.setup {}
 
 -- https://github.com/arduino/arduino-language-server

@@ -90,6 +90,7 @@ end
 local overseer = require("overseer")
 
 vim.keymap.set('n', ';o', overseer.open, { noremap = true })
+vim.keymap.set('n', '\'', overseer.toggle, { noremap = true })
 vim.keymap.set('n', ';r', overseer.run_template, { noremap = true })
 
 require("auto-session").setup({
@@ -156,8 +157,19 @@ hex.setup {
 	-- assemble_cmd = 'xxd -r',
 
 	-- function that runs on BufReadPre to determine if it's binary or not
-	-- is_file_binary_pre_read = function()
-	-- end,
+	is_file_binary_pre_read = function()
+		binary_ext = { 'bin', 'png', 'jpg', 'jpeg', 'exe', 'dll' }
+		-- only work on normal buffers
+		if vim.bo.ft ~= "" then return false end
+		-- check -b flag
+		if vim.bo.bin then return true end
+		-- check ext within binary_ext
+		local filename = vim.fn.expand('%:t')
+		local ext = vim.fn.expand('%:e')
+		if vim.tbl_contains(binary_ext, ext) then return true end
+		-- none of the above
+		return false
+	end,
 
 	-- function that runs on BufReadPost to determine if it's binary or not
 	-- is_file_binary_post_read = function()
