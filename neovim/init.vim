@@ -201,6 +201,7 @@ Plug 'zbirenbaum/copilot.lua'
 " Language specific
 Plug 'cuducos/yaml.nvim'
 " Plug 'nvim-java/nvim-java'
+Plug 'mfussenegger/nvim-jdtls'
 
 " Run, Debug
 Plug 'stevearc/overseer.nvim'

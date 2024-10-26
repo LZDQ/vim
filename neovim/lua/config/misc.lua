@@ -89,7 +89,6 @@ local function get_cwd_as_name()
 end
 local overseer = require("overseer")
 
-vim.keymap.set('n', ';o', overseer.open, { noremap = true })
 vim.keymap.set('n', '\'', overseer.toggle, { noremap = true })
 vim.keymap.set('n', ';r', overseer.run_template, { noremap = true })
 
