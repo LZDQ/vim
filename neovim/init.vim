@@ -17,6 +17,7 @@ inoremap <C-V> <ESC>"+pa
 
 nnoremap <leader>z z
 noremap z %
+onoremap v V%
 nnoremap Z za
 vnoremap Z zf
 nnoremap + zR
@@ -43,7 +44,6 @@ nnoremap <silent>Q :q<CR>
 nnoremap <leader>q q
 nmap q <C-L>
 vnoremap q <ESC>
-nnoremap <silent>dv V%d
 inoremap <C-H> <C-W>
 
 set tabstop=4
