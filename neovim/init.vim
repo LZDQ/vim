@@ -233,6 +233,7 @@ Plug 'gaborvecsei/usage-tracker.nvim'
 Plug 'xiyaowong/link-visitor.nvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'mistricky/codesnap.nvim', { 'do': 'make' }
+Plug 'ouuan/nvim-bigfile'
 
 " Jump
 Plug 'ctrlpvim/ctrlp.vim'

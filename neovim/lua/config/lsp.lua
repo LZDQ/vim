@@ -11,6 +11,7 @@ lspconfig.pyright.setup {
 				diagnosticMode = 'workspace',
 				useLibraryCodeForTypes = true,
 				typeCheckingMode = 'off',
+				reportMissingImports = true,
 			}
 		}
 	},
